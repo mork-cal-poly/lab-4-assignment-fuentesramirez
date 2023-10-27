@@ -22,6 +22,7 @@ function draw() {
   drawMagikarp(600, 50, 0.5);
   if (showMagikarp) {
     drawMagikarp(200, 200, 1);
+    drawSurprise();
   } else {
     drawGyrados(-40, 0, 2.2);
   }
@@ -213,6 +214,16 @@ function drawGyrados(x, y, s, a) {
   pop();
 }
 
+function drawSurprise() {
+  push();
+  translate(200, 100);
+  fill(255, 0, 0); //red
+  noStroke();
+  triangle(150, 100, 200, 155, 250, 100);
+  arc(175, 100, 50, 70, -PI, 0, CHORD);
+  arc(225, 100, 50, 70, -PI, 0, CHORD);
+  pop();
+}
 function mousePressed() {
   showMagikarp = !showMagikarp;
 }
