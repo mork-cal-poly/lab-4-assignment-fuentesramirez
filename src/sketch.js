@@ -1,3 +1,4 @@
+let x = 0;
 let showMagikarp = false;
 function setup() {
   // These lines are fitting our canvas
@@ -214,5 +215,7 @@ function drawGyrados(x, y, s, a) {
 }
 
 function mousePressed() {
-  showMagikarp = !showMagikarp;
+  if (mouseX > 200 && mouseX < 400 && mouseY > 300 && mouseY < 500) {
+    showMagikarp = !showMagikarp;
+  }
 }
