@@ -1,5 +1,8 @@
 let x = 0;
+let y = 0;
 let showMagikarp = false;
+let MagGrow;
+let rawr;
 function setup() {
   // These lines are fitting our canvas
   // where we want in the DOM
@@ -7,6 +10,8 @@ function setup() {
   // easier
   let myCanvas = createCanvas(800, 800);
   myCanvas.parent("canvas-parent");
+  MagGrow = 0;
+  rawr = 0;
 }
 
 function draw() {
@@ -21,11 +26,19 @@ function draw() {
   drawMagikarp(600, 550, 0.5);
   drawMagikarp(0, 550, 0.5);
   drawMagikarp(600, 50, 0.5);
+
   if (showMagikarp) {
-    drawMagikarp(200, 200, 1);
+    drawMagikarp(x, y, 1);
     drawSurprise();
-  } else {
-    drawGyrados(-40, 0, 2.2);
+    rawr += 5;
+    x++;
+    y++;
+  }
+  if ((rawr += 2000)) GrowingMag();
+  else {
+    drawGyrados(x, y, 2.2);
+    x++;
+    y++;
   }
   pop();
 }
@@ -111,6 +124,7 @@ function drawGyrados(x, y, s, a) {
   let q = color(128, 233, 255);
   translate(x, y);
   scale(s);
+  rotate(a);
 
   //body
   fill(m);
@@ -224,6 +238,18 @@ function drawSurprise() {
   arc(175, 100, 50, 70, -PI, 0, CHORD);
   arc(225, 100, 50, 70, -PI, 0, CHORD);
   pop();
+}
+
+function GrowingMag() {
+  push();
+  scale(MagGrow);
+  if (MagGrow <= 1.7) {
+    MagGrow += 0.01;
+
+    drawMagikarp(0, 0, 1);
+  } else {
+    drawGyrados(400, 400, 1, -3.1);
+  }
 }
 function mousePressed() {
   if (mouseX > 200 && mouseX < 400 && mouseY > 300 && mouseY < 500) {
